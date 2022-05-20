@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/registrationLikeBand"
+    android:background="@drawable/main_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardElevation="10dp">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/write_data_sign_in"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:textSize="24sp"
+            android:textAllCaps="false">
+        </TextView>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/buttons"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/emailField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:text=""
+            app:met_errorColor="@color/red"
+            app:met_primaryColor="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:textSize="25sp"
+            app:met_minCharacters="6">
+
+        </com.rengwuxian.materialedittext.MaterialEditText>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/passwordField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Введите пароль"
+            android:inputType="textPassword"
+            android:text=""
+            app:met_errorColor="@color/red"
+            app:met_primaryColor="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:textSize="25sp"
+            app:met_minCharacters="8"
+            app:met_maxCharacters="20">
+
+        </com.rengwuxian.materialedittext.MaterialEditText>
+
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:weightSum="2">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/main_buttons"
+            android:padding="15dp"
+            android:text="@string/back"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/main_buttons"
+            android:padding="15dp"
+            android:text="@string/continue_registration"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

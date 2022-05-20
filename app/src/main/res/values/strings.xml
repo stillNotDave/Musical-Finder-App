@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">DiplomWork</string>
+    <string name="app_in_name">Musical Finder</string>
+    <string name="sing_in_text">Войдите в свою учетную запись</string>
+    <string name="sing_in">Войти</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="registration">Регистрация</string>
+
+    <string name="register_like_band">Группа</string>
+    <string name="register_like_musician">Музыкант</string>
+
+    <string name="choose_registration">Выберите тип регистрации</string>
+
+    <string name="email">Введите email</string>
+    <string name="password">Введите пароль</string>
+    <string name="name">Введите ваше имя</string>
+    <string name="music_genres">Напишите жанры, в которых вы играете или хотите играть</string>
+    <string name="missing_people">Укажите, кого вы ищите?</string>
+    <string name="about_band">Напишите о группе</string>
+    <string name="about_you">Напишите о себе</string>
+
+    <string name="sign_in_title">Войдите в свою учетную запись</string>
+    <string name="sign_in_message">Введите свои данные</string>
+
+    <string name="back">Назад</string>
+    <string name="continue_registration">Продолжить</string>
+
+    <string name="add_video">Добавить ссылки на видео</string>
+
+    <string name="add_profile_photo">Добавьте фотографию профиля</string>
+    <string name="add_photo">Добавить</string>
+
+    <string name="register_band">Зарегистрироваться как группа</string>
+    <string name="register_musician">Зарегистрироваться как музыкант</string>
+
+    <string name="band_registration_text1">Выбирая этот тип регистрации, мы подрузамеваем, что вы уже состоите в музыкальном коллективе.</string>
+    <string name="band_registration_text2">Выбирая этот тип регистрации, мы подрузамеваем, что вы не состоите в музыкальном коллективе и ищите его.</string>
+
+    <string name="band_registration_text3">Хотите продолжить регистрацию?</string>
+
+    <string name="write_data">Введите данные для регистрации</string>
+    <string name="write_data_sign_in">Введите данные для входа</string>
+
+    <string name="back_to">Отменить</string>
+    <string name="continue_to">Продолжить</string>
+
+    <string name="no_email">Вы не ввели почту</string>
+    <string name="no_password">Вы не ввели пароль</string>
+    <string name="short_password">Пароль слишком короткий</string>
+
+    <string name="successful_registration">Успешная регистрация!</string>
+    <string name="unsuccessful_registration">Ошибка регистрации</string>
+    <string name="duplicate_email">Пользовтель с такой почтой уже существует</string>
+    <string name="wrong_login_or_password">Не верный логин или пароль</string>
+
+    <string name="info_about_registration">Вы можете зарегистрироваться не только как самостоятельный музыкант, который ищет коллектив, но и как член группы, которой не хватает участников.</string>
+    <string name="info_about_registration2"></string>
+
+    <string name="back_toast">Нажмите еще раз, чтобы выйти</string>
+
+</resources>

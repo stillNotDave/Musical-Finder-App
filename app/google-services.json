@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "190720505415",
+    "project_id": "registration-28358",
+    "storage_bucket": "registration-28358.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:190720505415:android:982b3aa36d71f652aaa362",
+        "android_client_info": {
+          "package_name": "ru.sfedu.zenin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "190720505415-fe35n2kce6qs7k54bf3qonlf4vc2cdnu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.sfedu.zenin",
+            "certificate_hash": "7f536731ab9403daef1a2e18596a703836a40950"
+          }
+        },
+        {
+          "client_id": "190720505415-r5fb1loefr3ovd623hfmhgnma8v4l9hu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIVBW1IEBSo6SIAPECMo_TuRmgjKJlBNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "190720505415-r5fb1loefr3ovd623hfmhgnma8v4l9hu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
