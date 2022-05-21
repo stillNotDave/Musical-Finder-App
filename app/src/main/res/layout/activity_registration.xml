@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -24,7 +24,7 @@
             android:text="@string/write_data"
             android:textColor="@color/black"
             android:layout_gravity="center"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textAllCaps="false">
         </TextView>
     </LinearLayout>
@@ -42,6 +42,53 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:orientation="vertical">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/nameField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name"
+            android:inputType="textPersonName"
+            android:text=""
+            app:met_errorColor="@color/red"
+            app:met_primaryColor="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:textSize="25sp">
+
+        </com.rengwuxian.materialedittext.MaterialEditText>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/band"
+                android:textSize="25sp"
+                android:buttonTint="@color/yellow"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp">
+
+            </RadioButton>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/musician"
+                android:buttonTint="@color/yellow"
+                android:textSize="25sp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="15dp">
+
+            </RadioButton>
+
+        </RadioGroup>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/emailField"

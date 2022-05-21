@@ -12,6 +12,10 @@ import android.widget.Button;
 
 public class RegistrationInfo extends AppCompatActivity {
 
+
+    // ЭТОТ КЛАСС ДОБАВИТЬ УЖЕ ПОТОМ
+
+
     private Context context = this;
     private Button buttonBack, buttonContinue;
 

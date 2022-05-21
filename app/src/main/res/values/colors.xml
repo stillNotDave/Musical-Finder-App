@@ -12,7 +12,9 @@
     <color name="gray">#646567</color>
     <color name="error_color">#AE0303</color>
     <color name="custom_orange">#E65D02</color>
+    <color name="new_orange">#D37E04</color>
     <color name="ripple_effect">#CC3100</color>
+    <color name="yellow">#FFC107</color>
 
     <color name="custom_orange_new">#FF5722</color>
     <color name="custom_orange_new_new">#FF6533</color>

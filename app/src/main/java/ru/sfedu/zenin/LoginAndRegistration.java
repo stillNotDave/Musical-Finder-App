@@ -25,8 +25,6 @@ public class LoginAndRegistration extends AppCompatActivity {
         setContentView(R.layout.activity_login_and_registration);
 
         mLogin = findViewById(R.id.buttonSignIn);
-        mRegister = findViewById(R.id.buttonRegistration);
-
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,10 +35,11 @@ public class LoginAndRegistration extends AppCompatActivity {
             }
         });
 
+        mRegister = findViewById(R.id.buttonRegistration);
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openActivity(context, RegistrationInfo.class);
+                openActivity(context, Registration.class);
             }
         });
 

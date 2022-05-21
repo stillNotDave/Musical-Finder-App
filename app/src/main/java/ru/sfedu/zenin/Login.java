@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +28,8 @@ public class Login extends AppCompatActivity {
 
     private EditText mEmail, mPassword;
 
+    private static final String TAG = "logger";
+
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
 
@@ -35,6 +38,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Возвращаемся назад по кнопке Назад
         back = findViewById(R.id.buttonBack);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,12 +48,14 @@ public class Login extends AppCompatActivity {
         });
 
 
+        // Проверяем есть ли пользователь, зарегистрированный на этом устройстве
         mAuth = FirebaseAuth.getInstance();
         firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if(user!=null){
+                    // Если пользователь есть, пропускаем активности входа/регистрации
                     Intent intent = new Intent(Login.this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -58,27 +64,21 @@ public class Login extends AppCompatActivity {
             }
         };
 
-        back = findViewById(R.id.buttonBack);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openActivity(context, RegistrationInfo.class);
-            }
-        });
-
         signIn = findViewById(R.id.buttonSignIn);
         mEmail = findViewById(R.id.emailField);
         mPassword = findViewById(R.id.passwordField);
 
+        // Вход в профиль
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final String email = mEmail.getText().toString();
                 final String password = mPassword.getText().toString();
 
+                // Проверка на пустые поля
                 if(email.isEmpty()) {
                     Toast.makeText(getBaseContext(), R.string.no_email, Toast.LENGTH_SHORT).show();
-                    return; //если возникает ошибка, с помощью return сразу же выходим из этой ф-ции
+                    return;
                 }
                 if(password.isEmpty()) {
                     Toast.makeText(getBaseContext(), R.string.no_password, Toast.LENGTH_SHORT).show();
@@ -89,10 +89,10 @@ public class Login extends AppCompatActivity {
                         .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                // Если регистрация не успешная
+                                // Если вход в профиль не успешный
                                 if(!task.isSuccessful()){
-                                    Toast.makeText(Login.this, R.string.unsuccessful_registration, Toast.LENGTH_SHORT)
-                                            .show();
+                                    Log.d(TAG, "Wrong login or password");
+                                    Toast.makeText(Login.this, R.string.wrong_login_or_password, Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

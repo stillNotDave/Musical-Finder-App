@@ -24,6 +24,7 @@
 
     <string name="back">Назад</string>
     <string name="continue_registration">Продолжить</string>
+    <string name="sign_out">Выйти</string>
 
     <string name="add_video">Добавить ссылки на видео</string>
 
@@ -45,8 +46,10 @@
     <string name="continue_to">Продолжить</string>
 
     <string name="no_email">Вы не ввели почту</string>
+    <string name="no_name">Вы не ввели имя</string>
     <string name="no_password">Вы не ввели пароль</string>
     <string name="short_password">Пароль слишком короткий</string>
+    <string name="no_radio_button">Вы не выбрали роль</string>
 
     <string name="successful_registration">Успешная регистрация!</string>
     <string name="unsuccessful_registration">Ошибка регистрации</string>
@@ -57,5 +60,11 @@
     <string name="info_about_registration2"></string>
 
     <string name="back_toast">Нажмите еще раз, чтобы выйти</string>
+
+    <string name="band">Мы группа</string>
+    <string name="musician">Я музыкант</string>
+
+    <string name="user_band">Группа</string>
+    <string name="user_musician">Музыкант</string>
 
 </resources>
