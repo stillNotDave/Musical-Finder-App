@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button signOut;
 
-    //private String userProfileType;
-    //private String oppositeUserProfileType;
+    private String userProfileType;
+    private String oppositeUserProfileType;
 
     private FirebaseAuth mAuth;
 
@@ -125,8 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private String userProfileType;
-    private String oppositeUserProfileType;
+
     // Проверка - пользователь группа или музыкант
     public void checkUserProfileType(){
 
