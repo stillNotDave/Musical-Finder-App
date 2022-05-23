@@ -16,7 +16,7 @@ public class RegistrationInfo extends AppCompatActivity {
     // ЭТОТ КЛАСС ДОБАВИТЬ УЖЕ ПОТОМ
 
 
-    private Context context = this;
+    private final Context context = this;
     private Button buttonBack, buttonContinue;
 
     @Override
@@ -29,6 +29,8 @@ public class RegistrationInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openActivity(context, LoginAndRegistration.class);
+                finish();
+                return;
             }
         });
 
@@ -36,8 +38,7 @@ public class RegistrationInfo extends AppCompatActivity {
         buttonContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegistrationInfo.this, Registration.class);
-                startActivity(intent);
+                openActivity(context, Registration.class);
                 finish();
                 return;
             }

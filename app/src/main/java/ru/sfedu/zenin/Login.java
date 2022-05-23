@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
-    private Context context = this;
+    private final Context context = this;
 
     private Button signIn, back;
 
@@ -38,31 +38,35 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Проверяем есть ли пользователь, зарегистрированный на этом устройстве
+        checkUserExist();
+
         // Возвращаемся назад по кнопке Назад
         back = findViewById(R.id.buttonBack);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openActivity(context, LoginAndRegistration.class);
+                finish();
+                return;
             }
         });
 
-
-        // Проверяем есть ли пользователь, зарегистрированный на этом устройстве
-        mAuth = FirebaseAuth.getInstance();
-        firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if(user!=null){
-                    // Если пользователь есть, пропускаем активности входа/регистрации
-                    Intent intent = new Intent(Login.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                    return;
-                }
-            }
-        };
+//        // Проверяем есть ли пользователь, зарегистрированный на этом устройстве
+//        mAuth = FirebaseAuth.getInstance();
+//        firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                if(user!=null){
+//                    // Если пользователь есть, пропускаем активности входа/регистрации
+//                    Intent intent = new Intent(Login.this, MainActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                    return;
+//                }
+//            }
+//        };
 
         signIn = findViewById(R.id.buttonSignIn);
         mEmail = findViewById(R.id.emailField);
@@ -77,10 +81,12 @@ public class Login extends AppCompatActivity {
 
                 // Проверка на пустые поля
                 if(email.isEmpty()) {
+                    Log.d(TAG, "no mail");
                     Toast.makeText(getBaseContext(), R.string.no_email, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(password.isEmpty()) {
+                    Log.d(TAG, "no password");
                     Toast.makeText(getBaseContext(), R.string.no_password, Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -98,6 +104,23 @@ public class Login extends AppCompatActivity {
                         });
             }
         });
+    }
+
+    // Проверяем есть ли пользователь, зарегистрированный на этом устройстве
+    public void checkUserExist(){
+        mAuth = FirebaseAuth.getInstance();
+        firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if(user!=null){
+                    // Если пользователь есть, пропускаем активности входа/регистрации
+                    openActivity(context, MainActivity.class);
+                    finish();
+                    return;
+                }
+            }
+        };
     }
 
     @Override

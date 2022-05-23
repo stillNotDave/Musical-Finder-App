@@ -1,16 +1,18 @@
 package ru.sfedu.zenin;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import static ru.sfedu.zenin.NavigationUtils.openActivity;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,20 +24,28 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<String> arrayList;
-    private ArrayAdapter<String> arrayAdapter;
+    private Cards cardsData[];
+    private CardsArrayAdapter arrayAdapter;
     private int i;
 
     private Button signOut;
 
+    private final Context context = this;
+
     private String userProfileType;
     private String oppositeUserProfileType;
-
+    private String currentUId;
+    private DatabaseReference usersDb;
     private FirebaseAuth mAuth;
 
+    ListView listView;
+    List<Cards> rowItems;
+
+    private static final String TAG = "logger";
 
     //@InjectView(R.id.frame) SwipeFlingAdapterView flingContainer;
 
@@ -45,23 +55,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //mAuth = FirebaseAuth.getInstance();
+        //usersDb = FirebaseDatabase.getInstance().getReference().child(getString(R.string.users));
+        mAuth = FirebaseAuth.getInstance();
+        //currentUId = mAuth.getCurrentUser().getUid();
 
         // Проверяем тип профиля пользователя(группа или музыкант)
         checkUserProfileType();
 
-        arrayList = new ArrayList<>();
-//        arrayList.add("php");
-//        arrayList.add("c");
-//        arrayList.add("python");
-//        arrayList.add("java");
-//        arrayList.add("html");
-//        arrayList.add("c++");
-//        arrayList.add("css");
-//        arrayList.add("javascript");
-
+        rowItems = new ArrayList<Cards>();
         // Адаптер для свайпа карточек профилей пользователей
-        arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.helloText, arrayList );
+        arrayAdapter = new CardsArrayAdapter(this, R.layout.item, rowItems);
+
 
         // Добавить данные в адаптер после создания адаптера
         //arrayAdapter.notifyDataSetChanged();
@@ -74,19 +78,19 @@ public class MainActivity extends AppCompatActivity {
             public void removeFirstObjectInAdapter() {
                 // Удаляем объект из адаптера
                 Log.d("LIST", "removed object!");
-                arrayList.remove(0);
+                rowItems.remove(0);
                 arrayAdapter.notifyDataSetChanged();
             }
 
             // Смахиваем карточки влево и вправо
             @Override
             public void onLeftCardExit(Object dataObject) {
-                Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, R.string.dislike, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
-                Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, R.string.like, Toast.LENGTH_SHORT).show();
             }
 
             // Проверка опустошается ли адаптер и все ли работает так как я хочу
@@ -104,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
-               Toast.makeText(MainActivity.this, "click", Toast.LENGTH_SHORT).show();
+               Toast.makeText(MainActivity.this, R.string.show_profile, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -115,11 +119,7 @@ public class MainActivity extends AppCompatActivity {
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAuth.signOut();
-                Intent intent = new Intent(MainActivity.this, LoginAndRegistration.class);
-                startActivity(intent);
-                finish();
-                return;
+                logoutUser();
             }
         });
 
@@ -131,14 +131,15 @@ public class MainActivity extends AppCompatActivity {
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        DatabaseReference bandDb = FirebaseDatabase.getInstance().getReference().child("Users").child("Band");
+        DatabaseReference bandDb = FirebaseDatabase.getInstance().getReference().child(getString(R.string.users))
+                .child(getString(R.string.we_are_band));
         bandDb.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
                 // Если ключ совпадает в id пользователя
                 if(dataSnapshot.getKey().equals(user.getUid())){
-                    userProfileType = "Band";
-                    oppositeUserProfileType = "Musician";
+                    userProfileType = getString(R.string.we_are_band);
+                    oppositeUserProfileType = getString(R.string.i_am_musician);
                     // Вызываем функцию, получающую пользователей другого типа профиля
                     getOppositeProfileTypeUsers();
                 }
@@ -158,14 +159,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        DatabaseReference musicianDb = FirebaseDatabase.getInstance().getReference().child("Users").child("Musician");
+        DatabaseReference musicianDb = FirebaseDatabase.getInstance().getReference().child(getString(R.string.users))
+                .child(getString(R.string.i_am_musician));
         musicianDb.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
                 // Если ключ совпадает в id пользователя
                 if(dataSnapshot.getKey().equals(user.getUid())){
-                    userProfileType = "Musician";
-                    oppositeUserProfileType = "Band";
+                    userProfileType = getString(R.string.i_am_musician);
+                    oppositeUserProfileType = getString(R.string.we_are_band);
                     // Вызываем функцию, получающую пользователей другого типа профиля
                     getOppositeProfileTypeUsers();
                 }
@@ -191,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
     // Получить пользователей противоположного типа профиля
     //(Если зарегистрирован как музыкант - получить все зарегистрированные группы и наоборот)
     public void getOppositeProfileTypeUsers(){
-        DatabaseReference oppositeProfileTypeDb = FirebaseDatabase.getInstance().getReference().child("Users")
+        DatabaseReference oppositeProfileTypeDb = FirebaseDatabase.getInstance().getReference().child(getString(R.string.users))
                 .child(oppositeUserProfileType);
         oppositeProfileTypeDb.addChildEventListener(new ChildEventListener() {
             @Override
@@ -199,7 +201,10 @@ public class MainActivity extends AppCompatActivity {
                 // Если ключ совпадает в id пользователя
                 // Добавляем пользователя в адаптер
                 if(dataSnapshot.exists()){
-                    arrayList.add(dataSnapshot.child("name").getValue().toString());
+                    // .child("name").getValue().toString());
+                    Cards item = new Cards(dataSnapshot.getKey(), dataSnapshot
+                            .child((getString(R.string.user_name))).getValue().toString());
+                    rowItems.add(item);
                     arrayAdapter.notifyDataSetChanged();
                 }
             }
@@ -217,6 +222,14 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+    }
+
+    // Выход из учетной записи пользовтеля
+    public void logoutUser(){
+        mAuth.signOut();
+        openActivity(context, LoginAndRegistration.class);
+        finish();
+        return;
     }
 
 }

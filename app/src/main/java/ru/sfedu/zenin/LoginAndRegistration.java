@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 public class LoginAndRegistration extends AppCompatActivity {
 
     private Button mLogin, mRegister;
-    private Context context = this;
+    private final Context context = this;
 
     private long backPressedTime;
     private Toast backToast;
@@ -28,18 +29,23 @@ public class LoginAndRegistration extends AppCompatActivity {
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginAndRegistration.this, Login.class);
-                startActivity(intent);
+                openActivity(context, Login.class);
                 finish();
                 return;
             }
         });
+
+
+
+
 
         mRegister = findViewById(R.id.buttonRegistration);
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openActivity(context, Registration.class);
+                finish();
+                return;
             }
         });
 

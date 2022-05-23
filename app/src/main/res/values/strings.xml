@@ -61,10 +61,17 @@
 
     <string name="back_toast">Нажмите еще раз, чтобы выйти</string>
 
-    <string name="band">Мы группа</string>
-    <string name="musician">Я музыкант</string>
+    <string name="we_are_band">Мы группа</string>
+    <string name="i_am_musician">Я музыкант</string>
+    <string name="users">Users</string>
+    <string name="user_name">name</string>
 
     <string name="user_band">Группа</string>
     <string name="user_musician">Музыкант</string>
+
+    <string name="like">like</string>
+    <string name="dislike">dislike</string>
+    <string name="show_profile">show profile</string>
+
 
 </resources>

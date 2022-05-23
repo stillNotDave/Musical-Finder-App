@@ -9,5 +9,7 @@ public class NavigationUtils {
         Intent intent = new Intent(context,cls);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
+        return;
     }
+
 }

@@ -29,7 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Registration extends AppCompatActivity {
 
     private Button mRegister, back;
-    private Context context = this;
+    private final Context context = this;
     private EditText mEmail, mPassword, mName;
 
     private RadioGroup mRadioGroup;
@@ -44,28 +44,31 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        // Регистрация пользователя
-        mAuth = FirebaseAuth.getInstance();
-        firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                // Проверка на отсутсвие пользователя на этом телефоне
-                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if(user!=null){
-                    Toast.makeText(Registration.this, R.string.successful_registration, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Registration.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                    return;
-                }
-            }
-        };
+        // Проверяем начилие вошеднего в профиль пользователя
+        checkUserExist();
+
+//        // Проверяем есть ли пользователь, зарегистрированный на этом устройстве
+//        mAuth = FirebaseAuth.getInstance();
+//        firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                // Проверка на отсутсвие пользователя на этом телефоне
+//                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                if(user!=null){
+//                    Toast.makeText(Registration.this, R.string.successful_registration, Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(Registration.this, MainActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                    return;
+//                }
+//            }
+//        };
 
         back = findViewById(R.id.buttonBack);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openActivity(context, RegistrationInfo.class);
+                openActivity(context, LoginAndRegistration.class);
             }
         });
 
@@ -84,7 +87,7 @@ public class Registration extends AppCompatActivity {
 
                 // Проверка на пустоту радио кнопок
                 if(radioButton.getText() == null){
-                    Log.d(TAG, "you have not chosen a role");
+                    Log.d(TAG, "radio button is empty");
                     Toast.makeText(Registration.this, R.string.no_radio_button, Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -128,17 +131,36 @@ public class Registration extends AppCompatActivity {
                                 // Добавляем пользователя
                                 else{
                                     String userId = mAuth.getCurrentUser().getUid();
+                                    if(userId.isEmpty()){
+                                        Log.d(TAG, "null pointer exception, user id is null");
+                                    }
                                     DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference()
                                             .child("Users")
                                             .child(radioButton.getText().toString()).child(userId)
                                             .child("name");
-
                                     currentUserDb.setValue(name);
                                 }
                             }
                         });
             }
         });
+    }
+
+    // Проверяем есть ли пользователь, зарегистрированный на этом устройстве
+    public void checkUserExist(){
+        mAuth = FirebaseAuth.getInstance();
+        firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if(user!=null){
+                    // Если пользователь есть, пропускаем активности входа/регистрации
+                    openActivity(context, MainActivity.class);
+                    finish();
+                    return;
+                }
+            }
+        };
     }
 
     @Override
