@@ -16,15 +16,16 @@
         tools:context=".MyActivity" />
 
     <Button
-        android:id="@+id/buttonSignIn"
+        android:id="@+id/buttonSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:background="@drawable/orange_sign_out_button"
-        android:text="@string/sign_out"
+        android:text="@string/settings"
         android:textColor="@color/white"
         android:textSize="12sp"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/frame">
 

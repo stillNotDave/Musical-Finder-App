@@ -21,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private String userProfileType;
     private String oppositeUserProfileType;
     private String currentUId;
+
     private DatabaseReference usersDb;
     private FirebaseAuth mAuth;
 
@@ -47,17 +49,14 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "logger";
 
-    //@InjectView(R.id.frame) SwipeFlingAdapterView flingContainer;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //usersDb = FirebaseDatabase.getInstance().getReference().child(getString(R.string.users));
+        usersDb = FirebaseDatabase.getInstance().getReference().child(getString(R.string.users));
         mAuth = FirebaseAuth.getInstance();
-        //currentUId = mAuth.getCurrentUser().getUid();
+        currentUId = mAuth.getCurrentUser().getUid();
 
         // Проверяем тип профиля пользователя(группа или музыкант)
         checkUserProfileType();
@@ -85,11 +84,26 @@ public class MainActivity extends AppCompatActivity {
             // Смахиваем карточки влево и вправо
             @Override
             public void onLeftCardExit(Object dataObject) {
+                // Получаем данные пользователя которого видим на карточке
+                Cards object = (Cards) dataObject;
+                String userId = object.getUserID();
+                // При смахе карточки влево мы как бы говорим "нет" и пропускаем пользователя
+                // тк он нам не интересен
+                // Создаем в таблице Users в группе/музыканте поля Да/Нет для пользователя с карточки
+                usersDb.child(oppositeUserProfileType).child(userId).child(getString(R.string.connections))
+                        .child(getString(R.string.nope)).child(currentUId).setValue(true);
                 Toast.makeText(MainActivity.this, R.string.dislike, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
+                Cards object = (Cards) dataObject;
+                String userId = object.getUserID();
+                usersDb.child(oppositeUserProfileType).child(userId).child(getString(R.string.connections))
+                        .child(getString(R.string.yep)).child(currentUId).setValue(true);
+
+                isConnectionMatch(userId);
+
                 Toast.makeText(MainActivity.this, R.string.like, Toast.LENGTH_SHORT).show();
             }
 
@@ -115,11 +129,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Выход из учетной записи
-        signOut = findViewById(R.id.buttonSignIn);
+        signOut = findViewById(R.id.buttonSettings);
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logoutUser();
+                //logoutUser();
+                openSettings();
             }
         });
 
@@ -198,9 +213,9 @@ public class MainActivity extends AppCompatActivity {
         oppositeProfileTypeDb.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-                // Если ключ совпадает в id пользователя
-                // Добавляем пользователя в адаптер
-                if(dataSnapshot.exists()){
+                // Если ключ совпадает в id пользователя и если id пользователя не существует в лайкнутых и пропущенных пользователях,
+                // то добавляем пользователя в адаптер
+                if(dataSnapshot.exists() && !dataSnapshot.child(getString(R.string.connections)).child(getString(R.string.nope)).hasChild(currentUId) && !dataSnapshot.child(getString(R.string.connections)).child(getString(R.string.yep)).hasChild(currentUId)){
                     // .child("name").getValue().toString());
                     Cards item = new Cards(dataSnapshot.getKey(), dataSnapshot
                             .child((getString(R.string.user_name))).getValue().toString());
@@ -224,11 +239,42 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Метод чтобы показать взаимне лайки если они есть
+    private void isConnectionMatch(String userId){
+        DatabaseReference currentUserMatchDb = usersDb.child(userProfileType).child(currentUId).child(getString(R.string.connections))
+                .child(getString(R.string.yep)).child(userId);
+        currentUserMatchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    Log.d(TAG, "new match");
+                    Toast.makeText(MainActivity.this, R.string.match_toast, Toast.LENGTH_LONG).show();
+
+                    // Сохраняем совпадения в БД
+                    usersDb.child(oppositeUserProfileType).child(dataSnapshot.getKey()).child(getString(R.string.connections))
+                            .child(getString(R.string.match)).child(currentUId).setValue(true);
+                    usersDb.child(userProfileType).child(currentUId).child(getString(R.string.connections))
+                            .child(getString(R.string.match)).child(dataSnapshot.getKey()).setValue(true);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
     // Выход из учетной записи пользовтеля
     public void logoutUser(){
         mAuth.signOut();
-        openActivity(context, LoginAndRegistration.class);
+        openActivity(context, UserSettings.class);
         finish();
+        return;
+    }
+
+    public void openSettings(){
+        openActivity(context, UserSettings.class);
+        // без finish()
         return;
     }
 

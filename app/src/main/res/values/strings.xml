@@ -25,6 +25,7 @@
     <string name="back">Назад</string>
     <string name="continue_registration">Продолжить</string>
     <string name="sign_out">Выйти</string>
+    <string name="settings">Настройки</string>
 
     <string name="add_video">Добавить ссылки на видео</string>
 
@@ -73,5 +74,26 @@
     <string name="dislike">dislike</string>
     <string name="show_profile">show profile</string>
 
+    <string name="connections">Связи</string>
+    <string name="nope">Нет</string>
+    <string name="yep">Да</string>
+
+    <string name="match_toast">Поздравляем! У вас есть совпадение!</string>
+    <string name="match">Совпадения</string>
+
+    <string name="your_name">Имя</string>
+    <string name="your_phone">Номер телефона</string>
+
+    <string name="confirm">Подтверждаю</string>
+
+    <string name="customers">Клиенты</string>
+
+    <string name="map_name">name</string>
+    <string name="map_phone">phone</string>
+
+    <string name="profile_images">profileImages</string>
+    <string name="profile_images_url">profileImagesUrl</string>
+
+    <string name="add_photo_error">Упс! Произошла непредвиденная ошибка.</string>
 
 </resources>
