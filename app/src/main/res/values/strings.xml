@@ -25,7 +25,6 @@
     <string name="back">Назад</string>
     <string name="continue_registration">Продолжить</string>
     <string name="sign_out">Выйти</string>
-    <string name="settings">Настройки</string>
 
     <string name="add_video">Добавить ссылки на видео</string>
 
@@ -74,26 +73,48 @@
     <string name="dislike">dislike</string>
     <string name="show_profile">show profile</string>
 
-    <string name="connections">Связи</string>
-    <string name="nope">Нет</string>
-    <string name="yep">Да</string>
+    <string name="connections">connections</string>
 
-    <string name="match_toast">Поздравляем! У вас есть совпадение!</string>
-    <string name="match">Совпадения</string>
+    <string name="match">У вас появилось новое совпадение!</string>
+    <string name="match_db">match</string>
+    <string name="match_button">Совпадения</string>
 
-    <string name="your_name">Имя</string>
-    <string name="your_phone">Номер телефона</string>
+    <string name="settings">Настройки</string>
+    <string name="phone">Введите номер телефона</string>
 
-    <string name="confirm">Подтверждаю</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="cancel">Отмена</string>
 
-    <string name="customers">Клиенты</string>
+    <string name="customers">клиенты</string>
 
-    <string name="map_name">name</string>
-    <string name="map_phone">phone</string>
+    <string name="name_map">name</string>
+    <string name="phone_map">phone</string>
+    <string name="profile_image_url">profileImageUrl</string>
+
+    <string name="change_data">Ваши данные изменены!</string>
 
     <string name="profile_images">profileImages</string>
-    <string name="profile_images_url">profileImagesUrl</string>
 
-    <string name="add_photo_error">Упс! Произошла непредвиденная ошибка.</string>
+    <string name="upload_image_error">Произошла ошибка загрузки фотографии</string>
+
+    <string name="user_profile_type">userProfileType</string>
+    <string name="default_image_map">default</string>
+    <string name="title_activity_match">Match</string>
+
+    <string name="matches_id">Id пользователя</string>
+    <string name="matches_name">Имя пользователя</string>
+
+    <string name="match_id">matchId</string>
+
+    <string name="write_message">Напишите сообщение</string>
+
+    <string name="chat">Chat</string>
+    <string name="chat_id">chatId</string>
+
+    <string name="created_by_user">createdByUser</string>
+    <string name="text_message">text</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

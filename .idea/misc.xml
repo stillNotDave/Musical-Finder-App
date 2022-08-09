@@ -5,13 +5,24 @@
       <map>
         <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/drawable-v24/main_buttons.xml" value="0.2175" />
         <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/drawable-v24/orange_sign_out_button.xml" value="0.2175" />
-        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/activity_login.xml" value="0.22826086956521738" />
-        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/activity_login_and_registration.xml" value="0.22826086956521738" />
-        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/activity_chat.xml" value="0.264" />
+        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/activity_login_and_registration.xml" value="0.264" />
+        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/activity_main2.xml" value="0.25416666666666665" />
+        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/activity_matches.xml" value="0.264" />
+        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/activity_profile_settings.xml" value="0.264" />
         <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/activity_registration.xml" value="0.264" />
         <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/activity_registration_info.xml" value="0.22826086956521738" />
-        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/activity_user_settings.xml" value="0.25416666666666665" />
+        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/demo.xml" value="0.25416666666666665" />
+        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/fragment_blank.xml" value="0.24010416666666667" />
         <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/item.xml" value="0.22826086956521738" />
+        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/item_bottom_navigation.xml" value="0.24010416666666667" />
+        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/item_chat.xml" value="0.25416666666666665" />
+        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/item_matches.xml" value="0.25416666666666665" />
+        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/layout/menu_buttom_navigation.xml" value="0.23505434782608695" />
+        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/menu/menu_buttom_navigation.xml" value="0.24010416666666667" />
+        <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/menu/menu_button_navigation.xml" value="0.25416666666666665" />
         <entry key="..\:/gamm/AndroidStudioProjects/Zenin/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2015" />
       </map>
     </option>

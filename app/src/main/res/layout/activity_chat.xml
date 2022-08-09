@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/chat_bg"
+    tools:context=".activities.Chat">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/sendLayout">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.core.widget.NestedScrollView>
+    
+    <LinearLayout
+        android:id="@+id/sendLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/messageText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            app:met_underlineColor="@color/hint_text"
+            app:met_textColorHint="@color/hint_text"
+            android:hint="@string/write_message">
+
+        </com.rengwuxian.materialedittext.MaterialEditText>
+
+        <ImageButton
+            android:id="@+id/buttonSend"
+            android:layout_width="0dp"
+            android:layout_weight="0.08"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:clickable="true"
+            app:fabSize="mini"
+            app:backgroundTint="@color/white"
+            android:src="@drawable/ic_send">
+
+        </ImageButton>
+
+    </LinearLayout>
+
+</RelativeLayout>

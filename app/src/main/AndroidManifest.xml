@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.sfedu.zenin">
 
-    <!--Получаем даступ к изображениям-->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,19 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Zenin">
         <activity
-            android:name=".UserSettings"
+            android:name=".activities.Chat"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".activities.ProfileSettings"
             android:exported="false" />
         <activity
-            android:name=".Registration"
+            android:name=".activities.Login"
             android:exported="false" />
         <activity
-            android:name=".RegistrationInfo"
+            android:name=".activities.Registration"
             android:exported="false" />
         <activity
-            android:name=".LoginAndRegistration"
+            android:name=".activities.LoginAndRegistration"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,8 +33,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.Main"
             android:exported="true" />
+        <activity
+            android:name=".activities.Match"
+            android:exported="true" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

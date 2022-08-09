@@ -11,16 +11,24 @@
 
     <color name="gray">#646567</color>
     <color name="error_color">#AE0303</color>
-    <color name="custom_orange">#E65D02</color>
     <color name="new_orange">#D37E04</color>
-    <color name="ripple_effect">#CC3100</color>
     <color name="yellow">#FFC107</color>
 
     <color name="custom_orange_new">#FF5722</color>
     <color name="custom_orange_new_new">#FF6533</color>
+    <color name="very_light_orange">#FFCC99</color>
 
     <color name="black30">#30000000</color>
     <color name="light_gray">#818181</color>
     <color name="blue">#48d1ff</color>
     <color name="red">#F15C22</color>
+
+    <color name="ripple_effect">#E84613</color>
+    <color name="custom_orange">#E65D02</color>
+
+    <color name="purple_buttons">#8b00ff</color>
+    <color name="new_ripple">#6600ff</color>
+    <color name="hint_text">#c9c0bb</color>
+    <color name="button_navigation_color">#ED155B</color>
+
 </resources>

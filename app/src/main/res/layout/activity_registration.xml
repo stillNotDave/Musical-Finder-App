@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/registrationLikeBand"
-    android:background="@drawable/main_bg"
+    android:background="@drawable/also_new_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:cardElevation="10dp">
@@ -21,26 +21,38 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="15dp"
             android:text="@string/write_data"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_gravity="center"
-            android:textSize="22sp"
+            android:textSize="20sp"
+            android:fontFamily="serif"
             android:textAllCaps="false">
         </TextView>
     </LinearLayout>
 
+
+    <ImageView
+        android:id="@+id/mainPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="350dp"
+        app:srcCompat="@drawable/main_logo" />
 
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_centerHorizontal="true"
         android:layout_above="@id/buttons"
         android:layout_marginBottom="40dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:orientation="vertical">
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -52,9 +64,11 @@
             android:text=""
             app:met_errorColor="@color/red"
             app:met_primaryColor="@color/white"
-            android:textColor="@color/black"
+            app:met_textColorHint="@color/hint_text"
+            app:met_textColor="@color/white"
             android:textColorHint="@color/gray"
-            android:textSize="25sp">
+            android:textSize="25sp"
+            app:met_minCharacters="2">
 
         </com.rengwuxian.materialedittext.MaterialEditText>
 
@@ -70,9 +84,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/we_are_band"
-                android:textSize="25sp"
-                android:buttonTint="@color/yellow"
-                android:textColor="@color/black"
+                android:textSize="28sp"
+                android:buttonTint="@color/red"
+                android:textColor="@color/white"
                 android:layout_marginLeft="10dp">
 
             </RadioButton>
@@ -81,9 +95,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/i_am_musician"
-                android:buttonTint="@color/yellow"
-                android:textSize="25sp"
-                android:textColor="@color/black"
+                android:buttonTint="@color/red"
+                android:textSize="28sp"
+                android:textColor="@color/white"
                 android:layout_marginLeft="15dp">
 
             </RadioButton>
@@ -99,7 +113,8 @@
             android:text=""
             app:met_errorColor="@color/red"
             app:met_primaryColor="@color/white"
-            android:textColor="@color/black"
+            app:met_textColorHint="@color/hint_text"
+            app:met_textColor="@color/white"
             android:textColorHint="@color/gray"
             android:textSize="25sp"
             app:met_minCharacters="6">
@@ -113,9 +128,10 @@
             android:hint="Введите пароль"
             android:inputType="textPassword"
             android:text=""
-            app:met_errorColor="@color/red"
+            app:met_textColorHint="@color/hint_text"
             app:met_primaryColor="@color/white"
-            android:textColor="@color/black"
+            app:met_errorColor="@color/red"
+            app:met_textColor="@color/white"
             android:textColorHint="@color/gray"
             android:textSize="25sp"
             app:met_minCharacters="8"
@@ -150,6 +166,8 @@
             android:background="@drawable/main_buttons"
             android:padding="15dp"
             android:text="@string/back"
+            android:fontFamily="serif"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
@@ -162,6 +180,8 @@
             android:background="@drawable/main_buttons"
             android:padding="15dp"
             android:text="@string/continue_registration"
+            android:fontFamily="serif"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
